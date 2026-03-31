@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ],
     },
     {
-      question: "What is the chemical symbol for gld?",
+      question: "What is the chemical symbol for gold?",
       answers: [
         { text: "Go", correct: false },
         { text: "Gd", correct: false },
