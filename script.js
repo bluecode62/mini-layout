@@ -47,13 +47,14 @@ document.addEventListener("DOMContentLoaded", () => {
     li.classList.add("transaction");
     li.classList.add(transaction.amount > 0 ? "income" : "expense");
 
-    //
     li.innerHTML = `
-      <span>${transaction.description}</span>
-      <span>${transaction.amount}
-        <button class="delete-btn" onclick="removeTransaction(${transaction.id})">x</button>
-      </span>
-    `;
+    <span>${transaction.description}</span>
+    <span>
+  
+    ${formatCurrency(transaction.amount)}
+      <button class="delete-btn" onclick="removeTransaction(${transaction.id})">x</button>
+    </span>
+  `;
 
     return li;
   }
@@ -73,9 +74,39 @@ document.addEventListener("DOMContentLoaded", () => {
       .filter((transaction) => transaction.amount < 0)
       .reduce((acc, transaction) => acc + transaction.amount, 0);
 
-      // update ui
-      balanceEl.textContent = balance;
-      incomeAmountEl.textContent = income; 
-      expenseAmountEl.textContent = expenses;
+    // update ui
+    balanceEl.textContent = formatCurrency(balance);
+    incomeAmountEl.textContent = income;
+    expenseAmountEl.textContent = expenses;
   }
+
+  function formatCurrency(number) {
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+    }).format(number);
+  }
+
+  // function removeTransaction(id) {
+  //   // filter out the one we wanted to delete
+  //   transactions = transactions.filter((transaction) => transaction.id !== id);
+  
+  //   localStorage.setItem("transactions", JSON.stringify(transactions));
+  
+  //   updateTransactionList();
+  //   updateSummary();
+  // }
+
+  window.removeTransaction = function(id) {
+    transactions = transactions.filter((transaction) => transaction.id !== id);
+  
+    localStorage.setItem("transcations", JSON.stringify(transactions));
+  
+    updateTransactionList();
+    updateSummary();
+  }
+
+  // intial render
+  updateTransactionList();
+  updateSummary();
 });
