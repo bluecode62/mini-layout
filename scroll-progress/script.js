@@ -15,7 +15,7 @@ function updateProgress() {
 
   if (progress >= 100) {
     badge.classList.add("complete");
-    badge.ctextContent = ", complte";
+    badge.textContent = ", complte";
   } else {
     badge.classList.remove("complete");
   }
