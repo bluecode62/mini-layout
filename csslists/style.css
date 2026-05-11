@@ -6,6 +6,39 @@
   box-sizing: border-box;
 }
 
+/*Variables*/
+:root {
+  /*FONT*/
+  --FF: "Nunito", sans-serif;
+  --FS: 1.5rem;
+  --FS-XL: 3rem;
+
+  /*Color*/
+  --Bgcolor: #475569;
+  --Alt-bgcolor: #1e293b;
+  --Radial-color: whitesmoke;
+  --Light-color: whitesmoke;
+  --Dark-color: #000;
+
+  /*Square*/
+  --Square-Bgcolor: papayawhip;
+  --Square-Size: max(150px, 20vw);
+
+  /*General*/
+  --Padding: 0.5rem;
+  --Shadows: 0 6px 5px -5px var(--Dark-color);
+  --Borders: 2px solid var(--Dark-color);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --Bgcolor: #000;
+    --Alt-Bgcolor: #333;
+    --Radial-Color: rgb(217, 217, 217);
+    --Square-Bgcolor: rgb(202, 174, 202);
+  }
+}
+
 img {
   display: block;
   max-width: 100%;
@@ -22,12 +55,10 @@ html {
   scroll-behavior: smooth;
 }
 body {
-  font:
-    1.5rem "Nunito",
-    sans-serif;
+  font: var(--FF) var(--FF);
   min-height: 100vh;
-  background-color: #475569;
-  background-image: radial-gradient(whitesmoke, #475569);
+  background-color: var(--Bgcolor);
+  background-image: radial-gradient(var(--Radial-color), var(--Bgcolor));
   display: flex;
   flex-direction: column;
 }
@@ -35,8 +66,8 @@ body {
 header,
 footer {
   position: sticky;
-  background-color: #1e293b;
-  color: whitesmoke;
+  background-color: var(--Alt-bgcolor);
+  color: var(--Light-color);
   text-align: center;
 }
 
@@ -45,12 +76,13 @@ header {
 }
 
 nav {
-  background-color: #fff;
-  padding: 0.5rem;
-  border-bottom: 2px solid #000;
+  background-color: var(--Light-color);
+  padding: var(--Padding);
+  border-bottom: var(--Borders);
   font-weight: bolder;
   display: flex;
   justify-content: space-evenly;
+  box-shadow: var(--Shadows);
 }
 
 nav a:any-link {
@@ -67,15 +99,34 @@ nav a:active {
 
 main {
   flex-grow: 1;
+  padding: 10px 0;
   display: flex;
-  flex-direction: column;
+  justify-content: space-evenly;
   align-items: center;
-  gap: 1.5rem;
-  padding: 1rem;
+  flex-flow: row wrap;
+  gap: min(4vw, 15px);
 }
 
 footer {
   bottom: 0;
+}
+
+/*Features*/
+
+.square--highlight {
+  --Square-Bgcolor: cornflowerblue;
+}
+
+.square {
+  background-color: var(--Square-Bgcolor);
+  width: var(--Square-Size);
+  height: var(--Square-Size);
+  border: var(--Borders);
+  border-radius: 15px;
+  display: grid;
+  place-content: center;
+  font-size: var(--FS-XL);
+  box-shadow: var(--Shadows);
 }
 
 /* || Profile Card */
@@ -109,7 +160,7 @@ footer {
   border: 10px solid red;
 }
 
-.card:nth-child(2){
+.card:nth-child(2) {
   background-color: papayawhip;
 }
 
@@ -120,8 +171,8 @@ footer {
   text-align: center;
 }
 
-.card figcaption::after{
-  content: '🌟 ';
+.card figcaption::after {
+  content: "🌟 ";
   display: block;
 }
 
