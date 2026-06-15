@@ -1,0 +1,11 @@
+@media (min-width: 64em) {
+  h1 {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 87.5em) {
+  h1 {
+    font-size: 3rem;
+  }
+}/*# sourceMappingURL=breakpoints.css.map */
