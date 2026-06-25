@@ -18,6 +18,20 @@ const initApp = () => {
     processSubmission();
   });
 
+  const clcearItems = document.getElementById("clearItems");
+  clcearItems.addEventListener("click", (e) => {
+    const list = toDoList.getList();
+    if (list.length) {
+      const confirmed = confirm(
+        "Are you sure you want to clear the entire list?",
+      );
+      if(confirmed){
+        toDoList.clearList();
+        refreshThePage();
+      }
+    }
+  });
+
   // Procedural 01
   // load list object
   refreshThePage();
