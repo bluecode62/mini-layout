@@ -25,8 +25,9 @@ const initApp = () => {
       const confirmed = confirm(
         "Are you sure you want to clear the entire list?",
       );
-      if(confirmed){
+      if (confirmed) {
         toDoList.clearList();
+        updatePeristentData(toDoList.getList());
         refreshThePage();
       }
     }
@@ -34,13 +35,24 @@ const initApp = () => {
 
   // Procedural 01
   // load list object
+  loadListObject();
   refreshThePage();
+};
+
+const loadListObject = () => {
+  const storedList = localStorage.getItem("myToDoList");
+  if (typeof storedList !== "string") return;
+  const parsedList = JSON.parse(storedList);
+  parsedList.forEach((itemObj) => {
+    const newToDoItem = createNewItem(itemObj._id, itemObj._item);
+    toDoList.addItemToList(newToDoItem);
+  });
 };
 
 const refreshThePage = () => {
   clearListDisplay();
   renderList();
-  // clearItemEntryField();
+  clearItemEntryField();
   // setFocusOnItemEntry();
 };
 
@@ -84,11 +96,21 @@ const buildListItem = (item) => {
 const addClickListenerToCheckbox = (checkbox) => {
   checkbox.addEventListener("click", (event) => {
     toDoList.removeItemFromList(checkbox.id);
-    // TODO: remove from persistent data
+    updatePeristentData(toDoList.getList());
+    const removedText = getLableText(checkbox.id);
+    updateScreenReaderConfirmation(removedText, "removed from the list");
     setTimeout(() => {
       refreshThePage();
     }, 1000);
   });
+};
+
+const getLableText = (checkboxId) => {
+  return document.getElementById(checkboxId).nextElementSibling.textContent;
+}
+
+const updatePeristentData = (listArray) => {
+  localStorage.setItem("myToDoList", JSON.stringify(listArray));
 };
 
 const clearItemEntryField = () => {
@@ -105,6 +127,8 @@ const processSubmission = () => {
   const nextItemId = calcNextItemId();
   const toDoItem = createNewItem(nextItemId, newEntryText);
   toDoList.addItemToList(toDoItem);
+  updatePeristentData(toDoList.getList());
+  updateScreenReaderConfirmation(newEntryText, "added");
   refreshThePage();
 };
 
@@ -126,4 +150,9 @@ const createNewItem = (itemId, itemText) => {
   toDo.setId(itemId);
   toDo.setItem(itemText);
   return toDo;
+};
+
+const updateScreenReaderConfirmation = (newEntryText, actionVerb) => {
+  document.getElementById("confirmation").textContent =
+    `${newEntryText} ${actionVerb}.`;
 };
