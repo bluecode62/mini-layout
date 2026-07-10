@@ -1,1 +1,42 @@
-/*# sourceMappingURL=style.css.map */
+.btn-rounded {
+  position: relative;
+  padding: 1em 4.3rem 0.9rem 1.25rem;
+  font-weight: 600;
+  margin: 0;
+  border: 0.1rem solid rgba(255, 255, 255, 0.6);
+  background-color: #fff;
+}
+.btn-rounded span {
+  position: absolute;
+  background-color: #b66adf;
+  width: 2.5rem;
+  height: 2.5rem;
+  top: 50%;
+  right: 5px;
+  transform: translateY(-50%);
+  border-radius: 50%;
+}
+.btn-rounded span i {
+  color: #fff;
+  font-size: 1rem;
+  line-height: 2.5rem;
+}
+.btn-rounded:hover {
+  background: linear-gradient(to right, rgba(182, 106, 223, 0.95), rgba(132, 13, 196, 0.95));
+  color: #fff;
+}
+.btn-rounded:hover span {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.menu {
+  background: linear-gradient(to right, rgba(182, 106, 223, 0.95), rgba(132, 13, 196, 0.95));
+}
+.menu li {
+  padding: 0 0.7em;
+}
+.menu li a {
+  color: #fff;
+  text-transform: capitalize;
+  font-weight: 500;
+}/*# sourceMappingURL=style.css.map */
