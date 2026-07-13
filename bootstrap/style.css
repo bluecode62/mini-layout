@@ -1,3 +1,8 @@
+@media (max-width: 576px) {
+  .btn-rounded {
+    display: none;
+  }
+}
 .btn-rounded {
   position: relative;
   padding: 1em 4.3rem 0.9rem 1.25rem;

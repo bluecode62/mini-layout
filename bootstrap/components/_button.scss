@@ -1,7 +1,12 @@
 @use "../custom" as *;
 @use '../components/mixins' as *; 
 
+
 .btn-rounded {
+  @media (max-width: 576px){
+    display: none;
+  }
+
   position: relative;
   padding: 1em 4.3rem 0.9rem 1.25rem;
   font-weight: 600;
