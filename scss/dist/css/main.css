@@ -24,6 +24,16 @@
   font-weight: 700;
 }
 
+li {
+  list-style: none;
+}
+
+.menu-nav {
+  display: flex;
+  gap: 4rem;
+  font-size: 1.2rem;
+}
+
 .menu-btn {
   position: absolute;
   z-index: 1;
