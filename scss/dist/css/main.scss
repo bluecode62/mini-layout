@@ -2,6 +2,7 @@
 @use "home" as *;
 @use "menu" as *;
 @use "about" as *;
+@use "project" as *;
 
 body {
   background: $primary-color;
