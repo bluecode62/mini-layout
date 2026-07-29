@@ -3,6 +3,8 @@
 @use "menu" as *;
 @use "about" as *;
 @use "project" as *;
+@use "contact" as *;
+@use "responsive" as *;
 
 body {
   background: $primary-color;
